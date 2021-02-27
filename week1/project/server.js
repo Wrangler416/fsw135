@@ -1,12 +1,11 @@
 const express = require("express")
 const app = express()
-
 const mongoose = require("mongoose")
 
 app.use(express.json())
 
 //Connect to Database 
-mongoose.connect("mongodb://locahost: 27017", {
+mongoose.connect("mongodb://locahost:27017/Inventory", {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
@@ -14,6 +13,9 @@ mongoose.connect("mongodb://locahost: 27017", {
 },
 () => console.log("Connected to Database")
 )
+
+// Routes 
+app.use("/inventory", require("./routes/inventoryRouter"))
 
 // Error handler
 app.use((err, req, res, next) => {

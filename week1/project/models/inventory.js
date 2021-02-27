@@ -2,17 +2,20 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const InventorySchema = new Schema({
+
     category: {
         type: String,
-        required: true
-    },
+        required: true},
+
     item: {
-        name: String,
-        required: true
-    },
-    inStock: Boolean,
-    amountInStock: Number,
-    price: Number
+        type: String,
+        required: true},
+
+    inStock: {type: Boolean},
+
+    amountInStock: {type: Number},
+
+    price: {type: Number}
 
 })
 
