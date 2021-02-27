@@ -14,7 +14,6 @@ mongoose.connect("mongodb://localhost: 27017/Inventory",
 () => console.log("Connected to db now"))
 
 app.use("/inventory", require("./routes/inventoryRouter"))
-app.use("/search/category", require("./routes/inventoryRouter"))
 
 app.use((err, req, res, next) => {
   console.log(err)
