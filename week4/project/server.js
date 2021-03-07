@@ -16,6 +16,8 @@ mongoose.connect(
 )
 
 app.use("/", require("./routes/authRouter"))
+app.use("/:userID", require("./routes/authRouter"))
+
 
 app.use((err, req, res, next) => {
     console.log(err)
