@@ -1,11 +1,14 @@
 const express = require("express")
 const app = express()
+require("dotenv").config()
 const mongoose = require("mongoose")
+const expressJwt = require("express-jwt")
+
 
 app.use(express.json())
 
 mongoose.connect(
-    "mongodb://localhost:27017/user-auth",
+    "mongodb://localhost:27017/user-authentication",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -15,16 +18,20 @@ mongoose.connect(
     () => console.log("connected to database")
 )
 
-app.use("/", require("./routes/authRouter"))
-app.use("/:userID", require("./routes/authRouter"))
+app.use("/auth", require("./routes/authRouter"))
+app.use("/api", expressJwt({ secret: process.env.SECRET, algorithms: ['HS256']}))
+app.use("/api/comment", require("./routes/commentRouter"))
 
 
 app.use((err, req, res, next) => {
     console.log(err)
+    if(err.name === "UnauthorizedError"){
+        res.status(err.status)
+    }
     return res.send({errMsg: err.message})
 })
 
-app.listen(6000, () => {
-    console.log("the server is running on local port 6000")
+app.listen(4000, () => {
+    console.log("the server is running on local port 4000")
 })
 

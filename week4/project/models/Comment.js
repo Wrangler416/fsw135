@@ -8,6 +8,11 @@ const commentSchema = new Schema({
     },
     imgUrl: {
         type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 })
 
