@@ -27,7 +27,7 @@ commentRouter.get("/user", (req, res, next) => {
     })
 })
 
-// Add Comment
+// Add new Comment
 
 commentRouter.post("/", (req, res, next) => {
     req.body.user = req.user._id
