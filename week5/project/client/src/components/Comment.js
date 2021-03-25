@@ -5,7 +5,7 @@ export default function Comment(props){
   return (
     <div>
       <h1>{title}</h1>
-      <h3>{description}</h3>
+      <h3>{description}{_id}</h3>
       <img src={imgUrl} alt={imgUrl} width={300}/>
     </div>
   )
